@@ -14,10 +14,22 @@
       </span>
     </mat-toolbar>
     <mat-nav-list>
-      <a *ngFor="let link of links" mat-list-item [routerLink]="link.rota">
-        <mat-icon matListItemIcon>{{ link.icone }}</mat-icon>
+      <ng-container *ngIf="!usuarioAutenticado">
+        <a *ngFor="let link of links" mat-list-item [routerLink]="link.rota">
+          <mat-icon matListItemIcon>{{ link.icone }}</mat-icon>
+          {{ link.titulo }}
+        </a>
+      </ng-container>
+
+      <ng-container *ngIf="usuarioAutenticado">
+        <a *ngFor="let link of authLinks"
+        mat-list-item
+        [routerLink]="link.rota"
+      >
+        <mat-icon matListitemIcon>{{ link.icone}}</mat-icon>
         {{ link.titulo }}
-      </a>
+        </a>
+      </ng-container>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -31,6 +43,14 @@
       >
         <mat-icon aria-label="Ícone ativador da barra lateral">menu</mat-icon>
       </button>
+      <span *ngIf="usuarioAutenticado" class="d-flex align-center gap-3 ms-auto">
+        <span>Seja bem-vindo(a), {{ usuarioAutenticado.nome}}!</span>
+        <button (click)="logoutAcionado()" mat-stroked-button>
+          <mat-icon>logout</mat-icon>
+          Logout
+        </button>
+      </span>
+
       <span
         *ngIf="isHandset$ | async"
         class="d-flex align-items-center gap-2 ms-auto"
