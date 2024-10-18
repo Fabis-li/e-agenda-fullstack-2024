@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { RegistrarUsuarioViewModel } from '../../models/auth.models';
 import { UsuarioService } from '../../services/usuario.service';
@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
   standalone: true,
   imports: [
     NgIf,
+    RouterLink,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
