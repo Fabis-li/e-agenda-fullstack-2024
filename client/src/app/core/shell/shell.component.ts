@@ -31,8 +31,8 @@ import { UsuarioTokenViewModel } from '../auth/models/auth.models';
   styleUrl: './shell.component.scss',
 })
 export class ShellComponent {
-  @Input() usuarioAutenticado?: UsuarioTokenViewModel;
-  @Output() logout: EventEmitter<void>;
+  @Input() usuarioAutenticado?: UsuarioTokenViewModel; // Usuário autenticado
+  @Output() logout: EventEmitter<void>; // Evento de logout
 
   links: LinkNavegacao[] = [
     {
@@ -45,7 +45,7 @@ export class ShellComponent {
       icone: 'person_add',
       rota: '/registro',
     },
-  ];
+  ]; // Links de navegação para usuários não autenticados
 
   authLinks: LinkNavegacao[] = [
     {
@@ -53,9 +53,9 @@ export class ShellComponent {
       icone: 'home',
       rota: '/dashboard',
     },
-  ]
+  ]; // Links de navegação para usuários autenticados
 
-  isHandset$: Observable<boolean>;
+  isHandset$: Observable<boolean>; // Observable para verificar se é um dispositivo móvel
 
   constructor(private breakpointObserver: BreakpointObserver) {
     this.isHandset$ = this.breakpointObserver
@@ -63,11 +63,11 @@ export class ShellComponent {
       .pipe(
         map((result) => result.matches),
         shareReplay()
-    );
-    this.logout = new EventEmitter();
+    ); // Observando mudanças de breakpoint
+    this.logout = new EventEmitter(); // Inicializando evento de logout
   }
 
   logoutAcionado() {
-    this.logout.emit();
+    this.logout.emit(); // Emitindo evento de logout
   }
 }

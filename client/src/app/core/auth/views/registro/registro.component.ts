@@ -23,7 +23,6 @@ import { MatInputModule } from '@angular/material/input';
     MatIconModule,
   ],
   templateUrl: './registro.component.html',
-  styleUrl: './registro.component.scss'
 })
 export class RegistroComponent {
    form: FormGroup;
