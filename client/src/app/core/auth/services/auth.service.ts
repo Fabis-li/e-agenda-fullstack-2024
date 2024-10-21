@@ -7,6 +7,7 @@ import { map, Observable } from "rxjs";
 @Injectable()
 export class AuthService {
 
+
   private apiUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
@@ -25,6 +26,19 @@ export class AuthService {
     return this.http
       .post<TokenViewModel>(urlCompleto, loginUsuario)
       .pipe(map(this.processarDados));
+  }
+
+  public logout() {
+    const urlCompleto = `${this.apiUrl}/contas/sair`;
+
+    return this.http
+      .post<TokenViewModel>(urlCompleto, {})
+
+  }
+
+
+  public validarExpiracaoToken(dataExpiracao: Date): boolean {
+    return dataExpiracao > new Date(); // Verificando se a data de expiração é maior que a data atual
   }
 
   private processarDados(resposta: any): TokenViewModel {
