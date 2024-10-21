@@ -11,6 +11,7 @@
             matInput
             autocomplete="username"
             placeholder="Ex: JoaoSilva12"
+            [maxlength]="30"
           />
           <mat-icon matSuffix color="primary">login</mat-icon>
           <mat-error class="text-white" *ngIf="login?.invalid">
