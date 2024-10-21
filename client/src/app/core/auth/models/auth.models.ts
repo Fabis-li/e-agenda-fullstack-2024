@@ -5,6 +5,11 @@ export interface RegistrarUsuarioViewModel{
   senha: string;
 }
 
+export interface AutenticarUsuarioViewModel {
+  login: string;
+  senha: string;
+}
+
 export interface TokenViewModel {
   chave: string;
   dataExpiracao: Date;

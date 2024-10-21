@@ -7,7 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
-import { UsuarioTokenViewModel } from '../../models/auth.models';
+import { AutenticarUsuarioViewModel, UsuarioTokenViewModel } from '../../models/auth.models';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -29,11 +30,12 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private usuarioSerivce: UsuarioService
+    private authService: AuthService,
+    private usuarioService: UsuarioService,
     ) {
     this.form = this.fb.group({
-      login: ['', Validators.required, Validators.minLength(3), Validators.maxLength(30)],
-      senha: ['', Validators.required, Validators.minLength(6), Validators.maxLength(30)],
+      login: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      senha: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]],
     });
   }
 
@@ -46,11 +48,16 @@ export class LoginComponent {
   }
 
   public entrar() {
-    if (this.form.valid) return;
+    if (!this.form.valid) return;
 
-    const usuarioLogado:UsuarioTokenViewModel = this.form.value;
-    console.log(usuarioLogado)
+    const loginUsuario: AutenticarUsuarioViewModel = this.form.value;
 
-    this.usuarioSerivce.logarUsuario(usuarioLogado);
+    console.log(loginUsuario);
+
+    this.authService.login(loginUsuario).subscribe((res) =>  {
+      this.usuarioService.logarUsuario(res.usuario);
+
+      this.router.navigate(['/dashboard']);
+    })
   }
 }

@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 import { environment } from "../../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
-import { RegistrarUsuarioViewModel, TokenViewModel } from "../models/auth.models";
+import { AutenticarUsuarioViewModel, RegistrarUsuarioViewModel, TokenViewModel } from "../models/auth.models";
 import { map, Observable } from "rxjs";
 
 @Injectable()
 export class AuthService {
+
   private apiUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
@@ -15,6 +16,14 @@ export class AuthService {
 
     return this.http
       .post<TokenViewModel>(urlCompleto, registro)
+      .pipe(map(this.processarDados));
+  }
+
+  public login(loginUsuario: AutenticarUsuarioViewModel) {
+    const urlCompleto = `${this.apiUrl}/contas/autenticar`;
+
+    return this.http
+      .post<TokenViewModel>(urlCompleto, loginUsuario)
       .pipe(map(this.processarDados));
   }
 
