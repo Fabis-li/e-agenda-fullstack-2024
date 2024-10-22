@@ -7,9 +7,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
-import { AutenticarUsuarioViewModel, UsuarioTokenViewModel } from '../../models/auth.models';
+import { AutenticarUsuarioViewModel, TokenViewModel, UsuarioTokenViewModel } from '../../models/auth.models';
 import { AuthService } from '../../services/auth.service';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { NotificacaoService } from '../../../notificacao/notificacao.service';
 
 @Component({
   selector: 'app-login',
@@ -34,6 +35,7 @@ export class LoginComponent {
     private authService: AuthService,
     private usuarioService: UsuarioService,
     private localStorageService: LocalStorageService,
+    private notificacaoService: NotificacaoService,
     ) {
     this.form = this.fb.group({
       login: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],// Criando o campo login do formulário
@@ -54,11 +56,23 @@ export class LoginComponent {
 
     const loginUsuario: AutenticarUsuarioViewModel = this.form.value;// Obtendo os valores do formulário
 
-    this.authService.login(loginUsuario).subscribe((res) =>  {
-      this.usuarioService.logarUsuario(res.usuario);// Logando o usuário
+    const observer = {
+      next: (res: TokenViewModel) => this.processarSucesso(res),// Se a requisição for bem sucedida, chamar o método processarSucesso
+      error: (erro: any) => this.processarFalha(erro),// Se a requisição falhar, chamar o método processarFalha
+    };
+
+    this.authService.login(loginUsuario).subscribe(observer);// Realizando a requisição de login
+  }
+
+  private processarSucesso(res:TokenViewModel) {
+    this.usuarioService.logarUsuario(res.usuario);// Logando o usuário
       this.localStorageService.salvarTokenAutenticacao(res);// Salvando o token no local storage
 
       this.router.navigate(['/dashboard']);// Redirecionando para a dashboard
-    })// Realizando o login do usuário
+  }
+
+  private processarFalha(err: Error) {
+    this.notificacaoService.erro(err.message);// Exibindo a notificação de erro
+    console.log(err);// Exibindo o erro no console
   }
 }

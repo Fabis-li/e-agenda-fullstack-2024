@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { environment } from "../../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { AutenticarUsuarioViewModel, RegistrarUsuarioViewModel, TokenViewModel } from "../models/auth.models";
-import { map, Observable } from "rxjs";
+import { catchError, map, Observable, throwError } from "rxjs";
 
 @Injectable()
 export class AuthService {
@@ -23,9 +23,10 @@ export class AuthService {
   public login(loginUsuario: AutenticarUsuarioViewModel) {
     const urlCompleto = `${this.apiUrl}/contas/autenticar`;
 
-    return this.http
-      .post<TokenViewModel>(urlCompleto, loginUsuario)
-      .pipe(map(this.processarDados));
+    return this.http.post<TokenViewModel>(urlCompleto, loginUsuario).pipe(
+      map(this.processarDados),
+      catchError(this.processarFalha)
+    );
   }
 
   public logout() {
@@ -45,5 +46,10 @@ export class AuthService {
     if(resposta.sucesso) return resposta.dados;
 
     throw new Error('Erro ao mapear token do usuário.');
+  }
+
+  private processarFalha(resposta: any) {
+    console.log(resposta)
+    return throwError(() => new Error(resposta.error.erros[0]));
   }
 }
