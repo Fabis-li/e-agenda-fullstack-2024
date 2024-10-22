@@ -4,14 +4,17 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 @Injectable()
 export class NotificacaoService {
   constructor(private snackbar: MatSnackBar) {}
+
   sucesso(mensagem: string): void {
     this.snackbar.open(mensagem, 'OK', {
       panelClass: ['notificacao-sucesso'],
     });
   }
+
   aviso(mensagem: string): void {
     this.snackbar.open(mensagem, 'OK');
   }
+
   erro(mensagem: string): void {
     this.snackbar.open(mensagem, 'OK', {
       panelClass: ['notificacao-erro'],
