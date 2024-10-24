@@ -1,0 +1,3 @@
+GET https://localhost:4300/api/contatos
+Content-Type: application/json
+Authorization: Bearer 
