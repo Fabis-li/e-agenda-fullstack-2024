@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ListarContatoViewModel } from '../models/contato.models';
 import { ContatoService } from '../services/contato.service';
-import { NgForOf, NgIf, AsyncPipe } from '@angular/common';
+import { NgForOf, NgIf} from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-listagem-contatos',
@@ -16,7 +16,6 @@ import { RouterLink } from '@angular/router';
   imports: [
     NgForOf,
     NgIf,
-    AsyncPipe,
     RouterLink,
     MatCardModule,
     MatButtonModule,
@@ -27,12 +26,14 @@ import { RouterLink } from '@angular/router';
   templateUrl: './listagem-contatos.component.html',
 })
 export class ListagemContatosComponent implements OnInit {
-  contatos$: Observable<ListarContatoViewModel[]>;
 
-  constructor(private contatoService: ContatoService) {
-    this.contatos$ = of([]);
+  contatos: ListarContatoViewModel[] = [];
+
+  constructor(private route: ActivatedRoute) {
+
+
   }
   ngOnInit(): void {
-    this.contatos$ = this.contatoService.selecionarTodos();
+    this.contatos = this.route.snapshot.data['contatos']
   }
 }

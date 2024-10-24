@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from '../../../core/auth/services/local-storage.service';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, delay, map, Observable, throwError } from 'rxjs';
 import { ListarContatoViewModel } from '../models/contato.models';
-import { A } from '@angular/cdk/keycodes';
+
 
 @Injectable({
   providedIn: 'root'
