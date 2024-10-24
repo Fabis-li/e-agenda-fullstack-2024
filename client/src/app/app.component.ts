@@ -8,11 +8,16 @@ import { NotificacaoService } from './core/notificacao/notificacao.service';
 import { AsyncPipe } from '@angular/common';
 import { LocalStorageService } from './core/auth/services/local-storage.service';
 import { AuthService } from './core/auth/services/auth.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './core/auth/services/auth.interceptor';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, ShellComponent, AsyncPipe],
+  providers: [
+    
+],
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
