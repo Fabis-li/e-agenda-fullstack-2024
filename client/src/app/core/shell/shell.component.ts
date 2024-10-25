@@ -60,6 +60,11 @@ export class ShellComponent {
       icone: 'people',
       rota: '/contatos',
     },
+    {
+      titulo: 'compromissos',
+      icone: 'event',
+      rota: '/compromissos',
+    },
   ]; // Links de navegação para usuários autenticados
 
   isHandset$: Observable<boolean>; // Observable para verificar se é um dispositivo móvel
