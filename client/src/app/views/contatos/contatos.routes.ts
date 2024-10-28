@@ -1,23 +1,10 @@
-import { ActivatedRouteSnapshot, ResolveFn, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { ListagemContatosComponent } from './listar/listagem-contatos.component';
-import { ContatoService } from './services/contato.service';
-import { inject } from '@angular/core';
-import { ListarContatoViewModel, VisualizarContatoViewModel } from './models/contato.models';
 import { CadatroContatoComponent } from './cadastrar/cadatro-contato.component';
 import { EdicaoContatoComponent } from './editar/edicao-contato.component';
 import { ExclusaoContatoComponent } from './excluir/exclusao-contato.component';
-
-const listagemContatosResolver: ResolveFn<ListarContatoViewModel[]> = () => {
-  return inject(ContatoService).selecionarTodos();
-};
-
-const visualizarContatoResolver: ResolveFn<VisualizarContatoViewModel> = (
-  route:ActivatedRouteSnapshot
-) => {
-  const id = route.params['id'];
-
-  return inject(ContatoService).selecionarPorId(id)
-}
+import { listagemContatosResolver } from './services/listagem-contato.resolver';
+import { visualizarContatoResolver } from './services/visualizar-contato.resolver';
 
 export const contatosRoutes: Routes = [
   { path: '', redirectTo: 'listar', pathMatch: 'full' },
