@@ -5,7 +5,7 @@
       <a
         mat-flat-button
         class="col-lg-4 col-xxl-2 fs-6 py-4"
-        [routerLink]="['/contatos', 'cadastrar']"
+        [routerLink]="['/compromissos', 'cadastrar']"
       >
         <mat-icon>bookmark_add</mat-icon>
         Cadastrar
@@ -21,11 +21,8 @@
         </mat-card-header>
         <mat-card-content class="d-grid mt-4">
           <span><strong>Data:</strong> {{ item.data }}</span>
-          <span><strong>Horario de Inicio:</strong> {{ item.horarioInicio }}</span>
-          <span><strong>Horario de Termino:</strong> {{ item.horarioTermino }}</span>
-          <span><strong>Local:</strong> {{ item.local }}</span>
-          <span><strong>Link:</strong> {{ item.link }}</span>
-          <span><strong>Contato:</strong> {{ item.contato }}</span>
+          <span><strong>Horario de Inicio:</strong> {{ item.horaInicio }}</span>
+          <span><strong>Horario de Termino:</strong> {{ item.horaTermino }}</span>
         </mat-card-content>
         <mat-card-footer class="d-flex justify-content-end gap-1 p-3 mt-auto">
           <a
@@ -49,4 +46,3 @@
     </div>
   </div>
 </main>
-
