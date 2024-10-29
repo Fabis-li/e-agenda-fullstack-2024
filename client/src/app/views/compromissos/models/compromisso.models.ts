@@ -30,11 +30,44 @@ export interface InserirCompromissoViewModel {
 export interface CompromissoInseridoViewModel {
   id: string;
   assunto: string;
-  data: string;
+  data: Date;
   horaInicio: string;
   horaTermino: string;
   tipoLocal:TipoLocalizacaoCompromissoEnum;
   local?: string;
   link?: string;
   contatoId?: string;
+}
+export interface EditarCompromissoViewModel {
+  assunto: string;
+  data: Date;
+  horaInicio: string;
+  horaTermino: string;
+  tipoLocal:TipoLocalizacaoCompromissoEnum;
+  local?: string;
+  link?: string;
+  contatoId?: string;
+}
+
+export interface CompromissoEditadoViewModel {
+  assunto: string;
+  data: Date;
+  horaInicio: string;
+  horaTermino: string;
+  tipoLocal:TipoLocalizacaoCompromissoEnum;
+  local?: string;
+  link?: string;
+  contatoId?: string;
+}
+
+export interface VisualizarCompromissoViewModel {
+  id: string;
+  assunto: string;
+  data: Date;
+  horaInicio: string;
+  horaTermino: string;
+  tipoLocal:TipoLocalizacaoCompromissoEnum;
+  local?: string;
+  link?: string;
+  contato: ListarContatoViewModel;
 }

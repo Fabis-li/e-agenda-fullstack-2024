@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, Observable, throwError } from 'rxjs';
-import { CompromissoInseridoViewModel, InserirCompromissoViewModel, ListarCompromissoViewModel } from '../models/compromisso.models';
+import { CompromissoEditadoViewModel, CompromissoInseridoViewModel, EditarCompromissoViewModel, InserirCompromissoViewModel, ListarCompromissoViewModel, VisualizarCompromissoViewModel } from '../models/compromisso.models';
 import { LocalStorageService } from '../../../core/auth/services/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompromissoService {
+
   private readonly url = `${environment.apiUrl}/compromissos`;
 
   constructor(
@@ -24,9 +25,24 @@ export class CompromissoService {
       .pipe(map(this.processarDados), catchError(this.processarFalha));
   }
 
+  public editar(id: string, editarCompromisso: EditarCompromissoViewModel): Observable<CompromissoEditadoViewModel>{
+    const urlCompleto = `${this.url}/${id}`
+
+    return this.http
+      .put<CompromissoEditadoViewModel>(urlCompleto, editarCompromisso)
+      .pipe(map(this.processarDados), catchError(this.processarFalha));
+  }
+
   public selecionarTodos(): Observable<ListarCompromissoViewModel[]> {
     return this.http
     .get<ListarCompromissoViewModel[]>(this.url)
+    .pipe(map(this.processarDados), catchError(this.processarFalha));
+  }
+
+  public selecionarPorId(id: string): Observable<VisualizarCompromissoViewModel> {
+    const urlCompleto = `${this.url}/visualizacao-completa/${id}`;
+
+    return this.http.get<CompromissoEditadoViewModel>(urlCompleto)
     .pipe(map(this.processarDados), catchError(this.processarFalha));
   }
 
