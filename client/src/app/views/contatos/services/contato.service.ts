@@ -15,8 +15,7 @@ export class ContatoService {
   private readonly url = `${environment.apiUrl}/contatos`;
 
   constructor(
-    private http: HttpClient,
-    private localStorageService: LocalStorageService
+    private http: HttpClient
   ) { }
 
   public inserir(inserirContato: InserirContatoViewModel): Observable<ContatoInseridoViewModel>{

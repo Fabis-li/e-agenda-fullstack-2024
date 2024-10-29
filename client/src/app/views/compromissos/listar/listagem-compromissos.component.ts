@@ -33,6 +33,8 @@ export class ListagemCompromissosComponent implements OnInit {
 
   ngOnInit(): void {
     this.compromissos = this.route.snapshot.data['compromissos']
+
+    
   }
 
 }

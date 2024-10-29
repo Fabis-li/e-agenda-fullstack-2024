@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { CompromissoService } from '../service/compromisso.service';
 
 @Component({
   selector: 'app-exclusao-compromisso',
@@ -30,7 +31,7 @@ export class ExclusaoCompromissoComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private compromissoService: ContatoService,
+    private compromissoService: CompromissoService,
     private notificacaoService: NotificacaoService
   ) {}
 

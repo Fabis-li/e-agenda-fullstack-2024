@@ -33,7 +33,7 @@ export class CompromissoService {
       .pipe(map(this.processarDados), catchError(this.processarFalha));
   }
 
-  public excluir (id: string): Observable<CompromissoExcluidoViewModel> {
+  public excluir(id: string): Observable<CompromissoExcluidoViewModel> {
     const urlCompleto = `${this.url}/${id}`
 
     return this.http
@@ -51,6 +51,30 @@ export class CompromissoService {
     const urlCompleto = `${this.url}/visualizacao-completa/${id}`;
 
     return this.http.get<CompromissoEditadoViewModel>(urlCompleto)
+    .pipe(map(this.processarDados), catchError(this.processarFalha));
+  }
+
+  public filtrarCompromissoHoje(dataAtual: string): Observable<ListarCompromissoViewModel[]> {
+    const urlCompleto = `${this.url}/hoje/${dataAtual}`;
+
+    return this.http
+    .get<ListarCompromissoViewModel[]>(urlCompleto)
+    .pipe(map(this.processarDados), catchError(this.processarFalha));
+  }
+
+  public filtrarCompromissoFuturo(dataInicial: string, dataFinal: string): Observable<ListarCompromissoViewModel[]> {
+    const urlCompleto = `${this.url}/futuro/${dataInicial}=${dataFinal}`;
+
+    return this.http
+    .get<ListarCompromissoViewModel[]>(urlCompleto)
+    .pipe(map(this.processarDados), catchError(this.processarFalha));
+  }
+
+  public filtarCompromissoPassado(dataAtual: string): Observable<ListarCompromissoViewModel[]> {
+    const urlCompleto = `${this.url}/passado/${dataAtual}`;
+
+    return this.http
+    .get<ListarCompromissoViewModel[]>(urlCompleto)
     .pipe(map(this.processarDados), catchError(this.processarFalha));
   }
 
