@@ -7,6 +7,7 @@ import { UsuarioService } from './core/auth/services/usuario.service';
 import { map, Observable } from 'rxjs';
 import { contatosRoutes } from './views/contatos/contatos.routes';
 import { compromissosRoutes } from './views/compromissos/compromissos.routes';
+import { tarefasRoutes } from './views/tarefas/tarefas.routes';
 
 const authGuard: CanMatchFn = (): Observable<boolean | UrlTree> => {
 
@@ -48,5 +49,6 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent,canMatch: [authUserGuard] },
 
   { path: 'contatos', children: contatosRoutes},
-  { path: 'compromissos', children: compromissosRoutes}
+  { path: 'compromissos', children: compromissosRoutes},
+  { path: 'tarefas', children: tarefasRoutes},
 ];
