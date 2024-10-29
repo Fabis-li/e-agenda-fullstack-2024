@@ -6,6 +6,7 @@ import { CompromissoService } from "./service/compromisso.service";
 import { CadastroCompromissoComponent } from "./cadastrar/cadastro-compromisso.component";
 import { listagemContatosResolver } from "../contatos/services/listagem-contato.resolver";
 import { EdicaoCompromissoComponent } from "./editar/edicao-compromisso.component";
+import { ExclusaoCompromissoComponent } from "./excluir/exclusao-compromisso.component";
 
 const listagemCompromissosResolver: ResolveFn<ListarCompromissoViewModel[]> = () => {
   return inject(CompromissoService).selecionarTodos();
@@ -34,6 +35,11 @@ export const compromissosRoutes: Routes = [
     path: 'editar/:id',
     component: EdicaoCompromissoComponent,
     resolve: { compromisso: visualizarCompromissoResolver, contatos: listagemContatosResolver }
+  },
+  {
+    path: 'excluir/:id',
+    component: ExclusaoCompromissoComponent,
+    resolve: { compromisso: visualizarCompromissoResolver}
   }
 
 ];

@@ -59,6 +59,7 @@ export interface CompromissoEditadoViewModel {
   link?: string;
   contatoId?: string;
 }
+export interface CompromissoExcluidoViewModel {}
 
 export interface VisualizarCompromissoViewModel {
   id: string;
