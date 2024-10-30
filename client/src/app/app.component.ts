@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, LOCALE_ID, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { ShellComponent } from "./core/shell/shell.component";
 import { Observable } from 'rxjs';
@@ -10,13 +10,15 @@ import { LocalStorageService } from './core/auth/services/local-storage.service'
 import { AuthService } from './core/auth/services/auth.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/auth/services/auth.interceptor';
+import { registerLocaleData } from '@angular/common';
+import localePtBr from '@angular/common/locales/pt';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, ShellComponent, AsyncPipe],
   providers: [
-    
+    {provide:LOCALE_ID, useValue: 'pt-BR'},
 ],
   templateUrl: './app.component.html',
 })
