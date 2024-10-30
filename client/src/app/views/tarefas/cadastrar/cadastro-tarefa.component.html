@@ -1,1 +1,107 @@
-<p>cadastro-tarefa works!</p>
+<main class="container my-5">
+  <div class="row justify-content-center g-3 mt-2">
+    <div class="col col-md-10 col-lg-6">
+      <h1 class="display-3">Cadastro de Tarefa</h1>
+      <hr />
+      <form [formGroup]="form" (submit)="gravar()">
+        <mat-form-field class="w-100 mt-5" appearance="fill">
+          <mat-label>Título</mat-label>
+          <input
+            matInput
+            formControlName="titulo"
+            autocomplete="titulo"
+            placeholder="Ex: Lavar o cachorro"
+            [maxLength]="30"
+          />
+          <mat-icon matSuffix color="primary">title</mat-icon>
+          <mat-error class="text-white" *ngIf="titulo?.invalid">
+            <span *ngIf="titulo?.errors?.['required']"
+              >O assunto precisa ser preenchido.</span
+            >
+            <span *ngIf="titulo?.errors?.['minlength']"
+              >O assunto deve conter ao menos 3 caracteres.</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mt-3" appearance="fill">
+          <mat-label>Prioridade</mat-label>
+          <mat-select formControlName="prioridade">
+            <mat-option
+              *ngFor="let prioridade of prioridades; index as i"
+              [value]="i"
+            >
+              {{ prioridade }}
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix color="primary">priority</mat-icon>
+          <mat-error class="text-white" *ngIf="prioridade?.invalid">
+            <span *ngIf="prioridade?.errors?.['required']"
+              >O contato precisa ser preenchido.</span
+            >
+            <span *ngIf="prioridade?.errors?.['minlength']"
+              >O contato deve conter ao menos 3 caracteres.</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mt-3" appearance="fill">
+          <mat-label>Item(s)</mat-label>
+
+          <input
+            matInput
+            autocomplete="itens"
+            placeholder="Itens"
+            [formControl]="novoItemTitulo"
+          />
+          <button mat-button type="button" matSuffix (click)="adicionarItem()">
+            <mat-icon>add_task</mat-icon>
+          </button>
+
+          <mat-error class="text-white" *ngIf="itens?.invalid">
+            <span *ngIf="itens?.errors?.['required']"
+              >o item precisa ser preenchido.</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <!-- input itens -->
+        <div formArrayName="itens" >
+          <div
+            *ngFor="let item of itens.controls; let i = index"
+            [formGroupName]="i"
+          >
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Título do Item</mat-label>
+              <input
+                matInput
+                formControlName="titulo"
+                placeholder="Título do item"
+                [maxLength]="30"
+              />
+              <button type="button" mat-icon-button matSuffix class="botao-excluir" (click)="removerItem(i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row justify-content-end g-2 gap-2 mt-3">
+          <button type="submit" mat-flat-button class="col-sm-4">
+            <mat-icon matIconPrefix>check</mat-icon>
+            Gravar
+          </button>
+          <a
+            mat-button
+            type="button"
+            class="col-sm-4"
+            routerLink="/tarefas/listar"
+          >
+            <mat-icon matIconPrefix>keyboard_return</mat-icon>
+            Voltar
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

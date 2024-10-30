@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, Observable, throwError } from 'rxjs';
-import { ListarTarefasViewsModel } from '../models/tarefa.models';
+import { InserirTarefaViewModel, ListarTarefasViewsModel, TarefaInseridaViewModel } from '../models/tarefa.models';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,12 @@ export class TarefaService {
   private readonly url: string = `${environment.apiUrl}/tarefas`;
 
   constructor(private http: HttpClient) { }
+
+  public inserir(inserirTarefa: InserirTarefaViewModel): Observable<TarefaInseridaViewModel> {
+    return this.http
+      .post<TarefaInseridaViewModel>(this.url, inserirTarefa)
+      .pipe(map(this.processarDados), catchError(this.processarFalha));
+  }
 
   public selecionarTodos(): Observable<ListarTarefasViewsModel[]> {
     return this.http

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ListarTarefasViewsModel } from '../models/tarefa.models';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { NgIf, NgForOf } from '@angular/common';
+import { NgIf, NgForOf, DatePipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -20,6 +20,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatIconModule,
     MatTooltipModule,
     MatDividerModule,
+    //DatePipe
   ],
   templateUrl: './listagem-tarefa.component.html'
 })

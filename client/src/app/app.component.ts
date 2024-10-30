@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { UsuarioTokenViewModel } from './core/auth/models/auth.models';
 import { UsuarioService } from './core/auth/services/usuario.service';
 import { NotificacaoService } from './core/notificacao/notificacao.service';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { LocalStorageService } from './core/auth/services/local-storage.service';
 import { AuthService } from './core/auth/services/auth.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -16,7 +16,7 @@ import localePtBr from '@angular/common/locales/pt';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ShellComponent, AsyncPipe],
+  imports: [RouterOutlet, ShellComponent, AsyncPipe, DatePipe],
   providers: [
     {provide:LOCALE_ID, useValue: 'pt-BR'},
 ],

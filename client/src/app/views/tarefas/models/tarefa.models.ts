@@ -23,3 +23,23 @@ export interface ListarTarefasViewsModel {
   prioridade: string;
   situacao: string;
 }
+
+export interface ItemTarefaViewModel {
+  id: string;
+  titulo: string;
+  status: StatusItemTarefaEnum;
+  concluido: boolean;
+}
+
+export interface InserirTarefaViewModel {
+  titulo: string;
+  prioridade: PrioridadeTarefaEnum;
+  itens: ItemTarefaViewModel;
+}
+
+export interface TarefaInseridaViewModel {
+  id: string;
+  titulo: string;
+  prioridade: PrioridadeTarefaEnum;
+  itens: ItemTarefaViewModel;
+}
