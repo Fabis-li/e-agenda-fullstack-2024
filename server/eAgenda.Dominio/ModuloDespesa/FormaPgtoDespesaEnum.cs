@@ -11,7 +11,7 @@ namespace eAgenda.Dominio.ModuloDespesa
         [Description("Dinheiro")]
         Dinheiro,
 
-        [Description("Cartão")]
+        [Description("Cartão de Crédito")]
         CartaoCredito
     }
 

@@ -1,4 +1,6 @@
-﻿namespace eAgenda.WebApi.ViewModels.ModuloDespesa
+﻿using eAgenda.Dominio.ModuloDespesa;
+
+namespace eAgenda.WebApi.ViewModels.ModuloDespesa
 {
     public class VisualizarDespesaViewModel
     {
@@ -10,8 +12,8 @@
 
         public DateTime Data { get; set; }
 
-        public string FormaPagamento { get; set; }
+        public FormaPgtoDespesaEnum FormaPagamento { get; set; }
 
-        public List<string> Categorias { get; set; }
+        public List<ListarCategoriaViewModel> Categorias { get; set; }
     }
 }

@@ -1,10 +1,12 @@
-﻿namespace eAgenda.WebApi.ViewModels.ModuloTarefa
+﻿using eAgenda.Dominio.ModuloTarefa;
+
+namespace eAgenda.WebApi.ViewModels.ModuloTarefa
 {
     public class VisualizarTarefaViewModel
     {
         public VisualizarTarefaViewModel()
         {
-            Itens = new List<VisualizarItemTarefaViewModel>();
+            Itens = new List<ItemTarefaViewModel>();
         }
 
         public Guid Id { get; set; }
@@ -19,10 +21,10 @@
 
         public decimal PercentualConcluido { get; set; }
 
-        public string Prioridade { get; set; }
+        public PrioridadeTarefaEnum Prioridade { get; set; }
 
         public string Situacao { get; set; }
 
-        public List<VisualizarItemTarefaViewModel> Itens { get; set; }
+        public List<ItemTarefaViewModel> Itens { get; set; }
     }
 }
