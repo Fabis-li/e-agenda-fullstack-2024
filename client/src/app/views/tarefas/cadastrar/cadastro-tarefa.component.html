@@ -79,7 +79,12 @@
                 placeholder="Título do item"
                 [maxLength]="30"
               />
-              <button type="button" mat-icon-button matSuffix class="botao-excluir" (click)="removerItem(i)">
+
+              <button type="button" mat-icon-button matSuffix class="botao-editar m-1" (click)="adicionarItem()">
+                <mat-icon>task_alt</mat-icon>
+              </button>
+
+              <button type="button" mat-icon-button matSuffix class="botao-excluir m-1" (click)="removerItem(i)">
                 <mat-icon>delete</mat-icon>
               </button>
             </mat-form-field>

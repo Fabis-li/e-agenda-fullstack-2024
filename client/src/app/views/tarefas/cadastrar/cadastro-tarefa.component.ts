@@ -88,13 +88,8 @@ export class CadastroTarefaComponent {
 
   public removerItem(index: number) {
     this.itens.removeAt(index);
-  }
 
-  public ocultar(): boolean {
-    if(!this.itens){
-      return false;
-    }
-    return true;
+    this.notification.aviso('Item removido com sucesso!');
   }
 
   private processarSucesso(tarefa: TarefaInseridaViewModel): void {
