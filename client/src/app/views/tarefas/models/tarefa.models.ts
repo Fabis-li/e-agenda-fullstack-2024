@@ -16,14 +16,6 @@ export enum StatusItemTarefaEnum {
   Removido
 }
 
-export interface ListarTarefasViewsModel {
-  id: string;
-  titulo: string;
-  dataCriacao: Date;
-  prioridade: string;
-  situacao: string;
-}
-
 export interface ItemTarefaViewModel {
   id: string;
   titulo: string;
@@ -43,3 +35,38 @@ export interface TarefaInseridaViewModel {
   prioridade: PrioridadeTarefaEnum;
   itens: ItemTarefaViewModel;
 }
+
+export interface EditarTarefaViewModel {
+  titulo: string;
+  prioridade: PrioridadeTarefaEnum;
+  itens: ItemTarefaViewModel[];
+}
+
+export interface TarefaEditadaViewModel {
+  titulo: string;
+  prioridade: PrioridadeTarefaEnum;
+  itens: ItemTarefaViewModel[];
+}
+
+export interface TarefaExcluidaViewModel {}
+
+export interface ListarTarefasViewsModel {
+  id: string;
+  titulo: string;
+  dataCriacao: Date;
+  prioridade: string;
+  situacao: string;
+}
+
+export interface VisualizarTarefaviewModel {
+  id: string;
+  titulo: string;
+  dataCriacao: Date;
+  dataConclusao: Date;
+  quantidadeItens: number;
+  percentualConcluido: number;
+  prioridade: PrioridadeTarefaEnum;
+  situacao: string;
+  itens: ItemTarefaViewModel[];
+}
+

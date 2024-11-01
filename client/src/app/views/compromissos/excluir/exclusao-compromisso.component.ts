@@ -37,6 +37,7 @@ export class ExclusaoCompromissoComponent {
 
   ngOnInit(): void {
     this.detalhesCompromisso = this.route.snapshot.data['compromisso'];
+
   }
 
   public excluir() {

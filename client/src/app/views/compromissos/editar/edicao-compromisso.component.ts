@@ -91,7 +91,7 @@ export class EdicaoCompromissoComponent implements OnInit{
 
     const compromisso = this.route.snapshot.data['compromisso'];
 
-    this.form.patchValue({
+    this.form.patchValue({ //
       ...compromisso,
       data: new Date(compromisso.data).toISOString().substring(0,10),
       contatoId: compromisso.contato.id
