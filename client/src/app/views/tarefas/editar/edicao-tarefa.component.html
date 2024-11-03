@@ -9,6 +9,7 @@
           <mat-label>Título</mat-label>
           <input
             matInput
+            data-cy="titulo"
             formControlName="titulo"
             autocomplete="titulo"
             placeholder="Ex: Lavar o cachorro"
@@ -27,7 +28,7 @@
 
         <mat-form-field class="w-100 mt-3" appearance="fill">
           <mat-label>Prioridade</mat-label>
-          <mat-select formControlName="prioridade">
+          <mat-select data-cy="prioridade" formControlName="prioridade">
             <mat-option
               *ngFor="let prioridade of prioridades; index as i"
               [value]="i"
@@ -51,12 +52,14 @@
 
           <input
             matInput
+            data-cy="tituloItem"
             autocomplete="itens"
             placeholder="Itens"
             #itemTitulo
           />
           <button
             mat-button
+            data-cy="adicionarItem"
             type="button"
             matSuffix
             (click)="adicionarItem(itemTitulo.value)"
@@ -102,6 +105,7 @@
 
                 <button
                   type="button"
+                  data-cy="removerItem"
                   mat-icon-button
                   matSuffix
                   class="botao-excluir"
@@ -113,47 +117,6 @@
             </mat-card-content>
           </mat-card>
         </div>
-
-        <!-- <div
-            *ngFor="let item of itensConcluidos; let i = index"
-            [formGroupName]="i"
-          >
-            <mat-form-field class="w-100" appearance="fill">
-              <input
-                matInput
-                formControlName="titulo"
-                placeholder=""
-                [maxLength]="30"
-              />
-                <span>{{item.value.titulo}}</span>
-
-              <button *ngIf="item.value.concluido === false"
-                type="button"
-                mat-icon-button
-                matSuffix
-                (click)="alterarStatusItem(i)"
-                class="botao-editar m-1"
-                matTooltip="Concluir item"
-                >
-                <mat-icon>task_alt</mat-icon>
-              </button>
-
-              <button *ngIf="item.value.concluido === true"
-                type="button"
-                mat-icon-button
-                matSuffix
-                (click)="alterarStatusItem(i)"
-                class="botao-editar m-1"
-                matTooltip="Cancelar conclusao do item"
-                >
-                <mat-icon>cancel</mat-icon>
-              </button>
-
-              <button type="button" mat-icon-button matSuffix class="botao-excluir" (click)="removerItem(i)">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </mat-form-field>
-          </div> -->
 
         <div class="row justify-content-end g-2 gap-2 mt-3">
           <button type="submit" mat-flat-button class="col-sm-4">

@@ -8,6 +8,7 @@
           <mat-label>Título</mat-label>
           <input
             matInput
+            data-cy="titulo"
             formControlName="titulo"
             autocomplete="titulo"
             placeholder="Ex: Lavar o cachorro"
@@ -26,7 +27,10 @@
 
         <mat-form-field class="w-100 mt-3" appearance="fill">
           <mat-label>Prioridade</mat-label>
-          <mat-select formControlName="prioridade">
+          <mat-select
+            data-cy="prioridade"
+            formControlName="prioridade"
+          >
             <mat-option
               *ngFor="let prioridade of prioridades; index as i"
               [value]="i"
@@ -50,11 +54,17 @@
 
           <input
             matInput
+            data-cy="tituloItem"
             autocomplete="itens"
             placeholder="Itens"
             [formControl]="novoItemTitulo"
           />
-          <button mat-button type="button" matSuffix (click)="adicionarItem()">
+          <button
+            mat-button
+            data-cy="adicionarItem"
+            type="button"
+            matSuffix
+            (click)="adicionarItem()">
             <mat-icon>add_task</mat-icon>
           </button>
 
@@ -68,7 +78,7 @@
         <!-- input itens -->
         <div formArrayName="itens" >
           <div
-            *ngFor="let item of itens.controls; let i = index"
+            *ngFor="let item of itens.controls; index as i"
             [formGroupName]="i"
           >
             <mat-form-field class="w-100" appearance="fill">
@@ -84,7 +94,7 @@
                 <mat-icon>task_alt</mat-icon>
               </button>
 
-              <button type="button" mat-icon-button matSuffix class="botao-excluir m-1" (click)="removerItem(i)">
+              <button type="button" data-cy="removerItem" mat-icon-button matSuffix class="botao-excluir m-1" (click)="removerItem(i)">
                 <mat-icon>delete</mat-icon>
               </button>
             </mat-form-field>
