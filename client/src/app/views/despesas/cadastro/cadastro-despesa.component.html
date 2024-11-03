@@ -1,0 +1,128 @@
+<main class="container my-5">
+  <div class="row justify-content-center g-3 mt-2">
+    <div class="col col-md-10 col-lg-6">
+      <h1 class="display-3">Cadastro de Despesa</h1>
+      <hr />
+      <form [formGroup]="form" (submit)="gravar()">
+        <mat-form-field class="w-100 mt-5" appearance="fill">
+          <mat-label>Descrição</mat-label>
+          <input
+            matInput
+            formControlName="descricao"
+            autocomplete="descricao"
+            placeholder="Ex: Compra de material de escritório"
+          />
+          <mat-icon matSuffix color="primary">description</mat-icon>
+          <mat-error class="text-white" *ngIf="descricao?.invalid">
+            <span *ngIf="descricao?.errors?.['required']"
+              >O assunto precisa ser preenchido.</span
+            >
+            <span *ngIf="descricao?.errors?.['minlength']"
+              >O assunto deve conter ao menos 3 caracteres.</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100 mt-3" appearance="fill">
+          <mat-label>Valor</mat-label>
+          <input
+            matInput
+            type="number"
+            [min]="0.0"
+            data-cy="valor"
+            formControlName="valor"
+            autocomplete="off"
+            placeholder="Ex: 100.00"
+          />
+          <mat-icon matSuffix color="primary">attach_money</mat-icon>
+          <mat-error class="text-white" *ngIf="valor?.invalid">
+            <span *ngIf="valor?.errors?.['required']"
+              >O valor precisa ser preenchido.</span
+            >
+            <span *ngIf="valor?.errors?.['min']"
+              >O valor precisa ser maior que 0.</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mt-3" appearance="fill">
+          <mat-label>Data</mat-label>
+          <input
+            matInput
+            formControlName="data"
+            type="data"
+            autocomplete="data"
+            type="date"
+            placeholder="Ex: 01/01/2021"
+          />
+          <mat-icon matSuffix color="primary">calendar_month</mat-icon>
+          <mat-error class="text-white" *ngIf="data?.invalid">
+            <span *ngIf="data?.errors?.['required']"
+              >A data precisa ser preenchido.</span
+            >
+            <span *ngIf="data?.errors?.['data']"
+              >A data informada não segue um padrão.</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mt-3" appearance="fill">
+          <mat-label>Forma de Pagamento</mat-label>
+          <mat-select
+            data-cy="formaPagamento"
+            formControlName="formaPagamento"
+            placeholder="Selecione a forma de pagamento"
+          >
+            <mat-option
+              *ngFor="let opcao of opcoesFormaPagamento; index as i"
+              [value]="i"
+            >
+              {{ opcao }}
+            </mat-option>
+          </mat-select>
+          <mat-error class="text-white" *ngIf="formaPagamento?.invalid">
+            A forma de pagamento precisa ser selecionada.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mt-3" appearance="fill">
+          <mat-label>Categorias</mat-label>
+          <mat-select
+            data-cy="categoriasSelecionadas"
+            formControlName="categoriasSelecionadas"
+            multiple
+            placeholder="Selecione uma ou mais categorias"
+          >
+            <mat-option
+              *ngFor="let categoria of categorias"
+              [value]="categoria.id"
+            >
+              {{ categoria.titulo }}
+            </mat-option>
+          </mat-select>
+          <mat-error class="text-white" *ngIf="categoriasSelecionadas?.invalid">
+            Ao menos uma categoria precisa ser selecionada.
+          </mat-error>
+        </mat-form-field>
+
+
+
+        <div class="row justify-content-end g-2 gap-2 mt-3">
+          <button type="submit" mat-flat-button class="col-sm-4">
+            <mat-icon matIconPrefix>check</mat-icon>
+            Gravar
+          </button>
+          <a
+            mat-button
+            type="button"
+            class="col-sm-4"
+            routerLink="/tarefas/listar"
+          >
+            <mat-icon matIconPrefix>keyboard_return</mat-icon>
+            Voltar
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
