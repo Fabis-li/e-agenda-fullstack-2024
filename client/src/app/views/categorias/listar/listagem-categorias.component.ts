@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ListarTarefasViewsModel } from '../models/tarefa.models';
+import { ListarCategoriaViewModel } from './models/categoria-models';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { NgIf, NgForOf, DatePipe } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { NgIf, NgForOf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
-  selector: 'app-listagem-tarefa',
+  selector: 'app-listagem-categorias',
   standalone: true,
   imports: [
     NgIf,
@@ -20,18 +20,16 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatIconModule,
     MatTooltipModule,
     MatDividerModule,
-
   ],
-  templateUrl: './listagem-tarefa.component.html'
+  templateUrl: './listagem-categorias.component.html'
 })
-export class ListagemTarefaComponent implements OnInit {
-  tarefas: ListarTarefasViewsModel[] = [];
+export class ListagemCategoriasComponent implements OnInit {
+
+  categorias: ListarCategoriaViewModel[] = [];
 
   constructor(private route: ActivatedRoute){}
 
   ngOnInit(): void {
-    this.tarefas = this.route.snapshot.data['tarefas'];
+    this.categorias = this.route.snapshot.data['categoraias'];
   }
-
-
 }

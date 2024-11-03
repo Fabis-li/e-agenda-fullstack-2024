@@ -8,6 +8,7 @@ import { map, Observable } from 'rxjs';
 import { contatosRoutes } from './views/contatos/contatos.routes';
 import { compromissosRoutes } from './views/compromissos/compromissos.routes';
 import { tarefasRoutes } from './views/tarefas/tarefas.routes';
+import { categoriasRoutes } from './views/categorias/categorias.routes';
 
 const authGuard: CanMatchFn = (): Observable<boolean | UrlTree> => {
 
@@ -51,4 +52,5 @@ export const routes: Routes = [
   { path: 'contatos', children: contatosRoutes},
   { path: 'compromissos', children: compromissosRoutes},
   { path: 'tarefas', children: tarefasRoutes},
+  { path: 'categorias', children: categoriasRoutes}
 ];
