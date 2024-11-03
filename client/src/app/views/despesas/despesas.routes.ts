@@ -9,6 +9,7 @@ import { DespesaService } from './service/despesa.service';
 import { CadastroDespesaComponent } from './cadastro/cadastro-despesa.component';
 import { listagemCategoriasResolver } from '../categorias/categorias.routes';
 import { EdicaoDespesaComponent } from './editar/edicao-despesa.component';
+import { ExclusaoDespesaComponent } from './excluir/exclusao-despesa.component';
 
 export const listagemDespesasResolver: ResolveFn<
   ListarDespesaViewModel[]
@@ -41,4 +42,9 @@ export const despesasRoutes: Routes = [
     component: EdicaoDespesaComponent,
     resolve: { despesa: visualizarDespesaResolver, categorias: listagemCategoriasResolver },
   },
+  {
+    path: 'excluir/:id',
+    component: ExclusaoDespesaComponent,
+    resolve: { despesa: visualizarDespesaResolver },
+  }
 ];

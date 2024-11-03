@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import {
   DespesaEditadaViewModel,
+  DespesaExcluidaViewModel,
   DespesaInseridaViewModel,
   EditarDespesaViewModel,
   InserirDespesaViewModel,
@@ -35,6 +36,14 @@ export class DespesaService {
 
     return this.http
       .put<DespesaEditadaViewModel>(urlCompleto, editarDespesa)
+      .pipe(map(this.processarDados), catchError(this.processarFalha));
+  }
+
+  public excluir(id: string): Observable<DespesaExcluidaViewModel>{
+    const urlCompleto = `${this.url}/${id}`;
+
+    return this.http
+      .delete<DespesaExcluidaViewModel>(urlCompleto)
       .pipe(map(this.processarDados), catchError(this.processarFalha));
   }
 
