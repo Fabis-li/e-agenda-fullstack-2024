@@ -8,6 +8,7 @@
           <mat-label>Assunto</mat-label>
           <input
             matInput
+            data-cy="assunto"
             formControlName="assunto"
             autocomplete="assunto"
             placeholder="Ex: Reunião com o cliente"
@@ -28,6 +29,7 @@
           <mat-label>Data</mat-label>
           <input
             matInput
+            data-cy="data"
             formControlName="data"
             autocomplete="data"
             type="date"
@@ -47,6 +49,7 @@
           <mat-label>Horário Inicio</mat-label>
           <input
             matInput
+            data-cy="horaInicio"
             formControlName="horaInicio"
             autocomplete="time"
             placeholder="Ex: 08:00"
@@ -65,6 +68,7 @@
           <mat-label>Horário Término</mat-label>
           <input
             matInput
+            data-cy="horaTermino"
             formControlName="horaTermino"
             autocomplete="time"
             placeholder="Ex: 09:00"
@@ -83,6 +87,7 @@
         <mat-form-field class="w-100 mt-3" appearance="fill">
           <mat-label>Tipo de Local</mat-label>
           <mat-select
+            data-cy="tipoLocal"
             formControlName="tipoLocal"
             placeholder="Selecione um local"
           >
@@ -105,6 +110,7 @@
           <mat-label>Local</mat-label>
           <input
             matInput
+            data-cy="local"
             formControlName="local"
             autocomplete="local"
             placeholder="Ex: Sala de reunião"
@@ -125,6 +131,7 @@
           <mat-label>Link</mat-label>
           <input
             matInput
+            data-cy="link"
             formControlName="link"
             autocomplete="link"
             placeholder="Ex: meet.google.com/abc-123"
@@ -142,7 +149,7 @@
 
         <mat-form-field class="w-100 mt-3" appearance="fill">
           <mat-label>Contato</mat-label>
-          <mat-select formControlName="contatoId">
+          <mat-select data-cy="contatoId" formControlName="contatoId">
             <mat-option *ngFor="let contato of contatos" [value]="contato.id">
               {{ contato.nome }}
             </mat-option>

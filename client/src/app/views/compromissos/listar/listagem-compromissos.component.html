@@ -4,6 +4,7 @@
     <section aria-label="Opções" class="row justify-content-start g-1 gap-2">
       <a
         mat-flat-button
+        data-cy="cadastrarNovo"
         class="col-lg-4 col-xxl-2 fs-6 py-4"
         [routerLink]="['/compromissos', 'cadastrar']"
       >
@@ -12,7 +13,11 @@
       </a>
     </section>
     <hr />
-    <div *ngFor="let item of compromissos" class="col-md-6 col-lg-4">
+    <div
+      *ngFor="let item of compromissos; index as i"
+      [attr.data-cy-list-item]="'item' + i"
+      class="col-md-6 col-lg-4"
+    >
       <mat-card
         class="card-listagem card-animado mat-mdc-elevation-specific mat-elevation-z3 h-100"
       >
