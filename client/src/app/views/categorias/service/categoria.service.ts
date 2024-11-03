@@ -1,17 +1,24 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
+import { CategoriaInseridaViewModel, InserirCategoriaViewModel, ListarCategoriaViewModel } from '../listar/models/categoria-models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriaService {
-  private readonly url = `${environment.apiUrl}/categorias`;
+  private readonly url: string = `${environment.apiUrl}/categorias`;
 
   constructor(private http:HttpClient) { }
 
-  public selecionarTodos() {
+  public inserir(inserirCategoria: InserirCategoriaViewModel){
+    return this.http
+      .post<CategoriaInseridaViewModel>(this.url,inserirCategoria)
+      .pipe(map(this.processarDados), catchError(this.processarFalha));
+  }
+
+  public selecionarTodos(): Observable<ListarCategoriaViewModel[]> {
     return this.http
       .get(this.url)
       .pipe(map(this.processarDados), catchError(this.processarFalha));

@@ -3,10 +3,11 @@ import { ListagemCategoriasComponent } from "./listar/listagem-categorias.compon
 import { ListarCategoriaViewModel } from "./listar/models/categoria-models";
 import { inject } from "@angular/core";
 import { CategoriaService } from "./service/categoria.service";
+import { CadastroCategoriaComponent } from "./cadastro/cadastro-categoria.component";
 
 export const listagemCategoriasResolver: ResolveFn<ListarCategoriaViewModel[]> = () => {
   return inject(CategoriaService).selecionarTodos();
-}
+};
 
 export const categoriasRoutes: Routes = [
   { path: '', redirectTo: 'listar', pathMatch: 'full' },
@@ -15,4 +16,9 @@ export const categoriasRoutes: Routes = [
     component: ListagemCategoriasComponent,
     resolve: { categorias: listagemCategoriasResolver }
   },
+  {
+    path: 'cadastrar',
+    component: CadastroCategoriaComponent
+  }
+
 ]

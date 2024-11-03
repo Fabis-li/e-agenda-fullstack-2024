@@ -17,8 +17,8 @@
     <hr />
 
     <div
-      *ngFor="let item of categorias; index as i"
-      [attr.data-cy-list-item]="'item' + i"
+      *ngFor="let item of categorias"
+      [attr.data-cy-list-item]="item.id"
       class="col-md-6 col-lg-4"
     >
       <mat-card
@@ -27,12 +27,6 @@
         <mat-card-header>
           <mat-card-title>{{ item.titulo }}</mat-card-title>
         </mat-card-header>
-
-        <mat-card-content class="d-grid mt-4">
-          <span><strong>Titulo Categoria:</strong> {{ item.titulo }}</span>
-          <!-- <span><strong>Prioridade:</strong> {{ item.prioridade }}</span> -->
-
-        </mat-card-content>
 
         <mat-card-footer class="d-flex justify-content-end gap-1 p-3 mt-auto">
           <a

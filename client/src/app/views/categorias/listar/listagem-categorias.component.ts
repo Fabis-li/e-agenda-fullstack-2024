@@ -30,6 +30,7 @@ export class ListagemCategoriasComponent implements OnInit {
   constructor(private route: ActivatedRoute){}
 
   ngOnInit(): void {
-    this.categorias = this.route.snapshot.data['categoraias'];
+    this.categorias = this.route.snapshot.data['categorias'];
+
   }
 }

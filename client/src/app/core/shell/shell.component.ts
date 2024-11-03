@@ -70,6 +70,11 @@ export class ShellComponent {
       icone: 'task_alt',
       rota: '/tarefas',
     },
+    {
+      titulo: 'categorias',
+      icone: 'bookmarks',
+      rota: '/categorias',
+    },
   ]; // Links de navegação para usuários autenticados
 
   isHandset$: Observable<boolean>; // Observable para verificar se é um dispositivo móvel
