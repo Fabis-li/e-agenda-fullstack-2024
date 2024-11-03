@@ -75,6 +75,11 @@ export class ShellComponent {
       icone: 'bookmarks',
       rota: '/categorias',
     },
+    {
+      titulo: 'despesas',
+      icone: 'currency_exchange',
+      rota: '/despesas',
+    }
   ]; // Links de navegação para usuários autenticados
 
   isHandset$: Observable<boolean>; // Observable para verificar se é um dispositivo móvel
