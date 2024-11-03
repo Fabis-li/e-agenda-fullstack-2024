@@ -8,6 +8,7 @@ import { inject } from '@angular/core';
 import { CategoriaService } from './service/categoria.service';
 import { CadastroCategoriaComponent } from './cadastro/cadastro-categoria.component';
 import { EdicaoCategoriaComponent } from './editar/edicao-categoria.component';
+import { ExclusaoCategoriaComponent } from './excluir/exclusao-categoria.component';
 
 export const listagemCategoriasResolver: ResolveFn<
   ListarCategoriaViewModel[]
@@ -36,6 +37,11 @@ export const categoriasRoutes: Routes = [
   {
     path: 'editar/:id',
     component: EdicaoCategoriaComponent,
+    resolve: { categoria: visualizarCategoriaResover },
+  },
+  {
+    path: 'excluir/:id',
+    component: ExclusaoCategoriaComponent,
     resolve: { categoria: visualizarCategoriaResover },
   }
 ];

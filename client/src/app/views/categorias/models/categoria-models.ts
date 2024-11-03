@@ -19,6 +19,8 @@ export interface CategoriaEditadaViewModel{
   titulo: string;
 }
 
+export interface CategoriaExcluidaViewModel {}
+
 export interface VisualizarCategoriaViewModel {
   id: string;
   titulo: string;
