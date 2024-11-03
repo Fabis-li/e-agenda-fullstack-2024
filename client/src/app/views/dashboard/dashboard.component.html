@@ -25,6 +25,7 @@
         <div *ngFor="let item of itensRedirect" class="col-md-4">
           <a
             [routerLink]="item.rota"
+            [attr.data-cy]="'botao' + item.texto"
             class="botao-redirecionamento w-100"
             mat-fab
             extended

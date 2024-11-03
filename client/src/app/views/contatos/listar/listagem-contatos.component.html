@@ -4,6 +4,7 @@
     <section aria-label="Opções" class="row justify-content-start g-1 gap-2">
       <a
         mat-flat-button
+        data-cy="novoRegistro"
         class="col-lg-4 col-xxl-2 fs-6 py-4"
         [routerLink]="['/contatos', 'cadastrar']"
       >
@@ -14,6 +15,7 @@
     <hr />
     <div *ngFor="let item of contatos" class="col-md-6 col-lg-4">
       <mat-card
+        [attr.data-cy-list-item]="item.id"
         class="card-listagem card-animado mat-mdc-elevation-specific mat-elevation-z3 h-100"
       >
         <mat-card-header>
@@ -27,6 +29,7 @@
         <mat-card-footer class="d-flex justify-content-end gap-1 p-3 mt-auto">
           <a
             mat-icon-button
+            data-cy="botaoEditar"
             class="botao-editar"
             matTooltip="Editar {{ item.nome }}"
             [routerLink]="['/contatos', 'editar', item.id]"
@@ -35,6 +38,7 @@
           </a>
           <a
             mat-icon-button
+            data-cy="botaoExcluir"
             class="botao-excluir"
             matTooltip="Excluir {{ item.nome }}"
             [routerLink]="['/contatos', 'excluir', item.id]"
