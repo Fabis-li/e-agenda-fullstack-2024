@@ -5,6 +5,7 @@
     <section aria-label="Opções" class="row justify-content-start g-1 gap-2">
       <a
         mat-flat-button
+        data-cy="cadastrarNovo"
         class="col-lg-4 col-xxl-2 fs-6 py-4"
         [routerLink]="['/despesas', 'cadastrar']"
       >
@@ -13,7 +14,10 @@
       </a>
     </section>
     <hr />
-    <div *ngFor="let item of despesas" class="col-md-6 col-lg-4">
+    <div
+    *ngFor="let item of despesas; index as i"
+    [attr.data-cy-çist-item]="'item' + i"
+    class="col-md-6 col-lg-4">
       <mat-card
         class="card-listagem card-animado mat-mdc-elevation-specific mat-elevation-z3 h-100"
       >
@@ -28,6 +32,7 @@
         <mat-card-footer class="d-flex justify-content-end gap-1 p-3 mt-auto">
           <a
             mat-icon-button
+            data-cy="botaoEditar"
             class="botao-editar"
             matTooltip="Editar {{ item.descricao }}"
             [routerLink]="['/despesas', 'editar', item.id]"
@@ -36,6 +41,7 @@
           </a>
           <a
             mat-icon-button
+            data-cy="botaoExcluir"
             class="botao-excluir"
             matTooltip="Excluir {{ item.descricao }}"
             [routerLink]="['/despesas', 'excluir', item.id]"
