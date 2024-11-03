@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { NotificacaoService } from '../../../core/notificacao/notificacao.service';
+import { InserirCategoriaViewModel, CategoriaInseridaViewModel, EditarCategoriaViewModel } from '../models/categoria-models';
 import { CategoriaService } from '../service/categoria.service';
-import { CategoriaInseridaViewModel, InserirCategoriaViewModel } from '../models/categoria-models';
-import { Router, RouterLink } from '@angular/router';
 import { NgIf, NgForOf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,7 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
-  selector: 'app-cadastro-categoria',
+  selector: 'app-edicao-categoria',
   standalone: true,
   imports: [
     NgIf,
@@ -23,13 +23,14 @@ import { MatInputModule } from '@angular/material/input';
     MatIconModule,
     MatButtonModule,
   ],
-  templateUrl: './cadastro-categoria.component.html'
+  templateUrl: './edicao-categoria.component.html'
 })
-export class CadastroCategoriaComponent {
+export class EdicaoCategoriaComponent implements OnInit {
   public form: FormGroup;
 
   constructor(
     private fb: FormBuilder,
+    private route: ActivatedRoute,
     private router: Router,
     private categoriaService: CategoriaService,
     private notificacao: NotificacaoService,
@@ -37,6 +38,12 @@ export class CadastroCategoriaComponent {
     this.form = this.fb.group({
       titulo: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
     });
+  }
+
+  ngOnInit(): void {
+    const categoria = this.route.snapshot.data['categoria'];
+
+    this.form.patchValue(categoria);
   }
 
   get titulo() {
@@ -52,17 +59,18 @@ export class CadastroCategoriaComponent {
       return;
     }
 
-    const inserirCategoria: InserirCategoriaViewModel = this.form.value;
+    const id = this.route.snapshot.params['id'];
+    const editarCategoria: EditarCategoriaViewModel = this.form.value;
 
-    this.categoriaService.inserir(inserirCategoria).subscribe({
-      next:(categoriaInserida) => this.processarSucesso(categoriaInserida),
+    this.categoriaService.editar(id, editarCategoria).subscribe({
+      next:(categoriaEditada) => this.processarSucesso(categoriaEditada),
       error:(erro) => this.processarFalha(erro),
     });
   }
 
   private processarSucesso(categoria: CategoriaInseridaViewModel): void {
     this.notificacao.sucesso(
-      `Categoria "${categoria.titulo}" cadastrada com sucesso!`
+      `Categoria "${categoria.titulo}" editada com sucesso!`
     );
     this.router.navigate(['/categorias', 'listar']);
   }
@@ -70,5 +78,7 @@ export class CadastroCategoriaComponent {
   private processarFalha(erro: Error) {
     this.notificacao.erro(erro.message);
   }
+
+
 
 }

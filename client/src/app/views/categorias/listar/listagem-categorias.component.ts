@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ListarCategoriaViewModel } from './models/categoria-models';
+import { ListarCategoriaViewModel } from '../models/categoria-models';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgIf, NgForOf } from '@angular/common';

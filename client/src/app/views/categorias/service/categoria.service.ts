@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, Observable, throwError } from 'rxjs';
-import { CategoriaInseridaViewModel, InserirCategoriaViewModel, ListarCategoriaViewModel } from '../listar/models/categoria-models';
+import { CategoriaEditadaViewModel, CategoriaInseridaViewModel, EditarCategoriaViewModel, InserirCategoriaViewModel, ListarCategoriaViewModel } from '../models/categoria-models';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,14 @@ export class CategoriaService {
   public inserir(inserirCategoria: InserirCategoriaViewModel){
     return this.http
       .post<CategoriaInseridaViewModel>(this.url,inserirCategoria)
+      .pipe(map(this.processarDados), catchError(this.processarFalha));
+  }
+
+  public editar(id: string, editarCategoria: EditarCategoriaViewModel): Observable<CategoriaEditadaViewModel> {
+    const urlCompleto = `${this.url}/${id}`;
+
+    return this.http
+      .put<CategoriaEditadaViewModel>(urlCompleto, editarCategoria)
       .pipe(map(this.processarDados), catchError(this.processarFalha));
   }
 
