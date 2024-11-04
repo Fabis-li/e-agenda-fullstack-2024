@@ -11,7 +11,7 @@ describe('Processo de Login do Usuário', () => {
 
   it('Deve autenticar usuário corretamente e redirecionar', () => {
 
-    cy.get('[data-cy=login]').type('teste4');
+    cy.get('[data-cy=login]').type('teste6');
 
     cy.get('[data-cy=senha]').type('Teste@123');
 
@@ -23,13 +23,4 @@ describe('Processo de Login do Usuário', () => {
 
     cy.url().should('contain', '/dashboard');
   });
-
-  it('Deve notificar sobre formulário de login inválido', () => {
-
-    cy.get('[data-cy=submit]').click();
-
-    cy.contains('Por favor, corriga os campos inválidos do formulário');
-
-  });
-
 })

@@ -12,15 +12,19 @@ describe('Deve realizar o processo de registro de usuário', () => {
 
   it('Deve registrar usuário corretamente e redirecionar', () => {
 
-    cy.get('[data-cy=nomeCompleto]').type('Teste4')
+    cy.get('[data-cy=nomeCompleto]').type('Teste6')
 
-    cy.get('[data-cy=nomeUsuario]').type('teste4');
+    cy.get('[data-cy=nomeUsuario]').type('teste6');
 
-    cy.get('[data-cy=email]').type('teste4@gmail.com');
+    cy.get('[data-cy=email]').type('teste6@gmail.com');
 
     cy.get('[data-cy=senha]').type('Teste@123');
 
-    cy.get('button[type=submit]').click();
+    cy.get('[data-cy=botaoRegistrar]').click();
+
+    cy.wait(2000);
+
+    cy.url().should('contain', '/dashboard');
   });
 
 });
