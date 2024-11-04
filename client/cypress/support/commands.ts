@@ -23,9 +23,9 @@ function limparDados(): void {
 }
 
 function registrar(
-  nome: string = 'Teste do Cypress',
-  login: string = 'Teste',
-  email: string = 'teste@cypress.com',
+  nome: string = 'Teste4',
+  login: string = 'Teste4',
+  email: string = 'teste4@gmail.com',
   senha: string = 'Teste@123'
 ) {
   cy.visit('registro');
